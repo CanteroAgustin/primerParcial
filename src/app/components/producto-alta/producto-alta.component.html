@@ -1,0 +1,58 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            <app-tabla-paises (onCountrySelected)="onCountrySelectedHandler($event)"></app-tabla-paises>
+        </div>
+
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Agregar producto</h4>
+            <form [formGroup]="altaForm" (ngSubmit)='enviar()'>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" formControlName="nombre">
+                        <small class="invalid"
+                            *ngIf="altaForm.controls.nombre.errors?.required && altaForm.controls.nombre.touched"> El
+                            nombre es
+                            requerido</small>
+                        <small class="invalid"
+                            *ngIf="altaForm.controls.nombre.errors?.contiene && altaForm.controls.nombre.touched">Tiene
+                            espacios</small>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" class="form-control" id="apellido" formControlName="apellido">
+                        <small class="invalid"
+                            *ngIf="altaForm.controls.apellido.errors?.required && altaForm.controls.apellido.touched">
+                            El apellido es requerido.</small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="edad">Edad</label>
+                        <input type="number" class="form-control" id="edad" formControlName="edad">
+                        <div class="invalid"
+                            *ngIf="altaForm.controls.edad.errors?.required && altaForm.controls.edad.touched">
+                            Edad invalida.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5 mb-3">
+                        <label for="country">Pais</label>
+                        <input type="text" class="form-control" id="pais" formControlName="pais" readonly>
+                        
+                    </div>
+                    <div class="col-md-5 mb-12 align-bottom" >
+                        <img *ngIf="img" [src]="img" alt="bandera" class="img align-bottom">
+                    </div>
+                </div>
+                <button [disabled]='altaForm.invalid' type="submit"
+                    class="btn btn-primary btn-block"> Aceptar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

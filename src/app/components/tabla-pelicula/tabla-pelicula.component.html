@@ -1,0 +1,28 @@
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3">Listado de Peliculas</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Fecha de Estreno</th>
+                    <th scope="col">Foto</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let pelicula of this.peliculas">
+                <tr>
+                    <th scope="row">{{pelicula.id}}</th>
+                    <td>{{pelicula.original_title}}</td>
+                    <td>{{pelicula.genre_ids}}</td>
+                    <td>{{pelicula.release_date}}</td>
+                    <td><img class="poster" src="{{pelicula.poster_path}}" alt=""></td>
+                    <td><button type="button" class="btn btn-primary" (click)="verDetalle(pelicula)">Ver detalle</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
