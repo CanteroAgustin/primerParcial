@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Pais } from 'src/app/models/pais';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
@@ -11,18 +12,20 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 export class ProductoAltaComponent implements OnInit {
 
   public altaForm: FormGroup;
-  img: string;
   collectionPath = '/productos';
+  pais = new Pais;
 
-  constructor(private fb: FormBuilder, private firestoreService: FirestoreService) {
+  constructor(private fb: FormBuilder, private firestoreService: FirestoreService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.altaForm = this.fb.group({
-      'nombre': ['', [Validators.required, this.validadorEspacio]],
-      'apellido': ['', Validators.required],
-      'edad': ['', Validators.required],
-      'pais': ['', Validators.required]
+      'codigo': ['', [Validators.required]],
+      'descripcion': ['', Validators.required],
+      'precio': ['', Validators.required],
+      'stock': ['', Validators.required],
+      'pais': ['', Validators.required],
+      'comestible': ['', Validators.required]
     });
   }
 
@@ -36,11 +39,14 @@ export class ProductoAltaComponent implements OnInit {
   }
 
   enviar() {
-    //this.firestoreService.saveResutGame(this.altaForm.value, this.collectionPath);
+    let datos = {...this.altaForm.value};
+    datos.pais = this.pais;
+    this.firestoreService.saveResutGame(datos, this.collectionPath);
+    this.router.navigate(['busqueda'])
   }
 
   onCountrySelectedHandler(pais: Pais) {
-    this.img = pais.flag;
+    this.pais = pais;
     this.altaForm.patchValue({
       pais: pais.name
     });

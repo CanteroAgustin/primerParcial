@@ -16,4 +16,9 @@ export class FirestoreService {
     this.collection = this.firestore.collection(collectionPath);
     return this.collection.add({ ...datos });
   }
+
+  getProductos() {
+    this.collection = this.firestore.collection('/productos');
+    return this.collection;
+  }
 }

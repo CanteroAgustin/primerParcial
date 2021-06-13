@@ -1,5 +1,8 @@
 export class User {
-    user: string;
-    password: string;
-    rol: string;
+    uid: string;
+    email: string;
+    displayName: string;
+    photoURL: string;
+    emailVerified: boolean;
+    rol?: string;
 }

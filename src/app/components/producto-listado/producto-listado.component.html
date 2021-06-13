@@ -1,1 +1,23 @@
-<p>producto-listado works!</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Codigo</th>
+            <th scope="col">descripcion</th>
+            <th scope="col">precio</th>
+            <th scope="col">stock</th>
+            <th scope="col">pais</th>
+            <th scope="col">comestible</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let producto of this.productos">
+        <tr>
+            <th scope="row">{{producto.codigo}}</th>
+            <td>{{producto.descripcion}}</td>
+            <td>{{producto.precio}}</td>
+            <td>{{producto.stock}}</td>
+            <td><img class="flag" src="{{producto.pais.flag}}" alt="" /> {{producto.pais.name}}</td>
+            <td><button type="button" class="btn btn-primary" (click)="verDetalle(producto)">Ver
+                    detalle</button></td>
+        </tr>
+    </tbody>
+</table>

@@ -25,4 +25,8 @@ export class BienvenidaComponent implements OnInit {
   ingresar(){
     this.router.navigate(['sign-in']);
   }
+
+  registrarme(){
+    this.router.navigate(['sign-up']);
+  }
 }

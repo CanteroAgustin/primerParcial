@@ -22,11 +22,12 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { TablaPaisesComponent } from './components/tabla-paises/tabla-paises.component';
 import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
-import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth.service';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ProductoDetalleComponent } from './components/producto-detalle/producto-detalle.component';
+import { DetallePaisComponent } from './components/detalle-pais/detalle-pais.component';
 
 @NgModule({
   declarations: [
@@ -41,10 +42,11 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     PaisesComponent,
     TablaPaisesComponent,
     BienvenidaComponent,
-    LoginComponent,
     SignInComponent,
     SignUpComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ProductoDetalleComponent,
+    DetallePaisComponent
   ],
   imports: [
     BrowserModule,

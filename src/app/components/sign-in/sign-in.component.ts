@@ -28,11 +28,17 @@ export class SignInComponent implements OnInit {
     }
   }
 
-  mockUser() {
+  mockUserAdmin() {
     this.loginForm.setValue({
       user: 'agustin7_7@yahoo.com.ar',
-      password: 'testUser'
+      password: 'userTest'
     })
   }
 
+  mockUserEmpleado() {
+    this.loginForm.setValue({
+      user: 'agustincantero11@gmail.com',
+      password: 'empleado'
+    })
+  }
 }

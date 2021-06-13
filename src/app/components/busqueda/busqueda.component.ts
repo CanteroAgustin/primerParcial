@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Pelicula } from 'src/app/models/pelicula';
+import { Producto } from 'src/app/models/producto';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,14 +10,14 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class BusquedaComponent implements OnInit {
 
-  pelicula: Pelicula;
+  producto: Producto;
 
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  handleOnDetalleClick(pelicula: Pelicula) {
-    this.pelicula = pelicula;
+  handleOnDetalleClick(producto: Producto) {
+    this.producto = producto;
   }
 }

@@ -3,14 +3,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
 import * as firebase from 'firebase/app';
-
-export interface User {
-  uid: string;
-  email: string;
-  displayName: string;
-  photoURL: string;
-  emailVerified: boolean;
-}
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -104,14 +97,16 @@ export class AuthService {
       })
   }
 
-  SetUserData(user: firebase.default.User) {
+  SetUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const userState: User = {
       uid: user.uid,
       email: user.email || '',
       displayName: user.displayName || '',
       photoURL: user.photoURL || '',
-      emailVerified: user.emailVerified
+      emailVerified: user.emailVerified,
+      rol: user.rol || 'empleado'
+
     }
     localStorage.setItem('user', JSON.stringify(userState));
     return userRef.set(userState, {

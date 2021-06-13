@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Producto } from 'src/app/models/producto';
+import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
   selector: 'app-producto-listado',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductoListadoComponent implements OnInit {
 
-  constructor() { }
+  @Output() onDetalleClick = new EventEmitter<Producto>();
+  productos: Producto[];
+
+  constructor(private firestoreService: FirestoreService) { }
 
   ngOnInit(): void {
+    this.firestoreService.getProductos().valueChanges().subscribe(response => {
+      this.productos = response;
+    });
+  }
+
+  verDetalle(producto: Producto) {
+    this.onDetalleClick.emit(producto);
   }
 
 }

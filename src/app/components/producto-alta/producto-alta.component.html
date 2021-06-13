@@ -10,47 +10,69 @@
             <form [formGroup]="altaForm" (ngSubmit)='enviar()'>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" formControlName="nombre">
+                        <label for="codigo" class="form-label">Codigo:</label>
+                        <input type="text" class="form-control" id="codigo" formControlName="codigo">
                         <small class="invalid"
-                            *ngIf="altaForm.controls.nombre.errors?.required && altaForm.controls.nombre.touched"> El
-                            nombre es
+                            *ngIf="altaForm.controls.codigo.errors?.required && altaForm.controls.codigo.touched"> El
+                            codigo es
                             requerido</small>
-                        <small class="invalid"
-                            *ngIf="altaForm.controls.nombre.errors?.contiene && altaForm.controls.nombre.touched">Tiene
-                            espacios</small>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="apellido">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" formControlName="apellido">
+                        <label for="descripcion">Descripcion:</label>
+                        <input type="text" class="form-control" id="descripcion" formControlName="descripcion">
                         <small class="invalid"
-                            *ngIf="altaForm.controls.apellido.errors?.required && altaForm.controls.apellido.touched">
-                            El apellido es requerido.</small>
+                            *ngIf="altaForm.controls.descripcion.errors?.required && altaForm.controls.descripcion.touched">
+                            La descripcion es requerida.</small>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        <label for="edad">Edad</label>
-                        <input type="number" class="form-control" id="edad" formControlName="edad">
+                        <label for="precio">Precio:</label>
+                        <input type="number" class="form-control" id="precio" formControlName="precio" min="0">
                         <div class="invalid"
-                            *ngIf="altaForm.controls.edad.errors?.required && altaForm.controls.edad.touched">
-                            Edad invalida.
+                            *ngIf="altaForm.controls.precio.errors?.required && altaForm.controls.precio.touched">
+                            El precio es requerido.
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-5 mb-3">
-                        <label for="country">Pais</label>
-                        <input type="text" class="form-control" id="pais" formControlName="pais" readonly>
-                        
-                    </div>
-                    <div class="col-md-5 mb-12 align-bottom" >
-                        <img *ngIf="img" [src]="img" alt="bandera" class="img align-bottom">
+                    <div class="col-md-4 mb-3">
+                        <label for="stock">Stock:</label>
+                        <input type="number" class="form-control" id="stock" formControlName="stock" min="0">
+                        <div class="invalid"
+                            *ngIf="altaForm.controls.stock.errors?.required && altaForm.controls.stock.touched">
+                            El stock es requerido.
+                        </div>
                     </div>
                 </div>
-                <button [disabled]='altaForm.invalid' type="submit"
-                    class="btn btn-primary btn-block"> Aceptar
+
+                <p>Es comestible:</p>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" formControlName="comestible" type="radio" name="comestible"
+                        id="inlineRadio1" [value]='true'>
+                    <label class="form-check-label" for="inlineRadio1">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" formControlName="comestible" type="radio" name="comestible"
+                        id="inlineRadio2" [value]='false'>
+                    <label class="form-check-label" for="inlineRadio2">No</label>
+                </div>
+                <p> </p>
+                <div class="row">
+                    <div class="col-md-5 mb-3">
+                        <label for="country">Pais:</label>
+                        <input type="text" class="form-control" id="pais" formControlName="pais" readonly>
+                    </div>
+                    <div class="col-md-5 mb-12 align-bottom">
+                        <img *ngIf="pais.flag" [src]="pais.flag" alt="bandera" class="img align-bottom">
+                    </div>
+                    <div class="invalid"
+                        *ngIf="altaForm.controls.pais.errors?.required && altaForm.controls.pais.touched">
+                        El pais es requerido.
+                    </div>
+                </div>
+                <button [disabled]='altaForm.invalid' type="submit" class="btn btn-primary btn-block"> Aceptar
                 </button>
             </form>
         </div>

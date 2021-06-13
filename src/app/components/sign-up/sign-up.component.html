@@ -11,13 +11,6 @@
             </div>
             <button class="w-100 btn btn-primary" type="button" [disabled]="!registerForm.valid"
                 (click)="authService.SignUp(userEmail.value, userPwd.value)">Registrarme</button>
-            <p></p>
-            <h3 class="margin-top-10" style="text-align: center;">O</h3>
-            <a class="w-100 btn btn-outline-secondary" (click)="authService.GoogleAuth()" role="button">
-                <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-                <span>Continuar con Google</span>
-            </a>
         </form>
         <div class="forgotPassword">
             <a routerLink="/forgot-password">¿Ya tenes una cuenta?</a>
