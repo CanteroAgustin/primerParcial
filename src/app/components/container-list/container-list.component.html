@@ -1,0 +1,18 @@
+<div class="table-responsive">
+    <table class="table text-center overflow">
+        <thead>
+            <tr>
+                <th style="width: 22%;">Codigo</th>
+                <th style="width: 22%;">Marca</th>
+                <th style="width: 22%;">Capacidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let container of containers' class="btn w-75" (click)='seleccionarContainer(container)'>
+                <td>{{container.codigo}}</td>
+                <td>{{container.marca}}</td>
+                <td>{{container.capacidad}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

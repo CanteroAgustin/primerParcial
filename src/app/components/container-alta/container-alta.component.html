@@ -1,0 +1,17 @@
+<div class="card mb-4 rounded-3 shadow-sm">
+    <div class="card-body">
+        <form [formGroup]='containerFormGroup'>
+            <div class="mb-3">
+                <input type="number" class="form-control" id="codigo" placeholder="Codigo" min=0 formControlName='codigo'>
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" id="marca" placeholder="Marca" formControlName='marca'> 
+            </div>
+            <div class="mb-3">
+                <input type="number" class="form-control" id="capacidad" placeholder="Capacidad" min=0 formControlName='capacidad'>
+            </div>
+            <button [disabled]='!containerFormGroup.valid' type="button" class="w-100 btn btn-lg btn-outline-primary" (click)="darDeAlta()">Dar de alta</button>
+        </form>
+
+    </div>
+</div>

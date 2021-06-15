@@ -11,10 +11,12 @@ import { AuthService } from 'src/app/services/auth.service';
 export class BusquedaComponent implements OnInit {
 
   producto: Producto;
+  user;
 
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
   handleOnDetalleClick(producto: Producto) {

@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Router } from "@angular/router";
 import * as firebase from 'firebase/app';
 import { User } from '../models/user';
+import { FirestoreService } from './firestore.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class AuthService {
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
     public router: Router,
-    public ngZone: NgZone
+    public ngZone: NgZone,
+    private firestoreService: FirestoreService
   ) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
@@ -31,10 +33,17 @@ export class AuthService {
   SignIn(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.SetUserData(result.user || this.userState);
-        this.ngZone.run(() => {
-          this.router.navigate(['busqueda']);
-        });
+        this.firestoreService.getUserCompleto(result.user.uid).subscribe(
+          doc => {
+            if (doc.exists) {
+              let userCompleto = doc.data();
+              this.SetUserData(result.user || this.userState, userCompleto);
+              this.ngZone.run(() => {
+                this.router.navigate(['busqueda']);
+              });
+            }
+          });
+
       }).catch((error) => {
         console.log('Error: ' + error.message);
         //this.openSnackBar('Error: ' + error.message);
@@ -97,7 +106,7 @@ export class AuthService {
       })
   }
 
-  SetUserData(user) {
+  SetUserData(user, userCompleto?) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const userState: User = {
       uid: user.uid,
@@ -105,8 +114,7 @@ export class AuthService {
       displayName: user.displayName || '',
       photoURL: user.photoURL || '',
       emailVerified: user.emailVerified,
-      rol: user.rol || 'empleado'
-
+      rol: userCompleto.rol
     }
     localStorage.setItem('user', JSON.stringify(userState));
     return userRef.set(userState, {

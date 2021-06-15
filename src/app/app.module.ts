@@ -28,6 +28,11 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ProductoDetalleComponent } from './components/producto-detalle/producto-detalle.component';
 import { DetallePaisComponent } from './components/detalle-pais/detalle-pais.component';
+import { ContainerListComponent } from './components/container-list/container-list.component';
+import { ContainerAbmComponent } from './components/container-abm/container-abm.component';
+import { ContainerAltaComponent } from './components/container-alta/container-alta.component';
+import { ContainerUpdateComponent } from './components/container-update/container-update.component';
+import { ContainerDeleteComponent } from './components/container-delete/container-delete.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +51,12 @@ import { DetallePaisComponent } from './components/detalle-pais/detalle-pais.com
     SignUpComponent,
     ForgotPasswordComponent,
     ProductoDetalleComponent,
-    DetallePaisComponent
+    DetallePaisComponent,
+    ContainerListComponent,
+    ContainerAbmComponent,
+    ContainerAltaComponent,
+    ContainerUpdateComponent,
+    ContainerDeleteComponent
   ],
   imports: [
     BrowserModule,
