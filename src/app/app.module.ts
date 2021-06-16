@@ -67,7 +67,7 @@ import { ContainerDeleteComponent } from './components/container-delete/containe
     AngularFirestoreModule,
     FontAwesomeModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, ProductoAltaComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -37,7 +37,7 @@
   <div class="p-5 mb-4 bg-light rounded-3">
     <div class="container-fluid py-5">
       <h1 class="display-3">Listado de Productos</h1>
-      <app-producto-listado (onDetalleClick)="handleOnDetalleClick($event)"></app-producto-listado>
+      <app-producto-listado [productos]='productos' (onDetalleClick)="handleOnDetalleClick($event)"></app-producto-listado>
     </div>
   </div>
 

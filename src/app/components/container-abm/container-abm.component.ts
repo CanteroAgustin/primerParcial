@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Container } from 'src/app/models/container';
-import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
   selector: 'app-container-abm',
@@ -9,19 +8,44 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 })
 export class ContainerAbmComponent implements OnInit {
 
-  containers: Container[];
+  containers: Container[] = [];
   container: Container;
 
-  constructor(private firestoreService: FirestoreService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.firestoreService.getContainers().valueChanges().subscribe(data => {
-      this.containers = data;
-    });
   }
 
-  seleccionarContainer(container){
+  onAltaContainerHandler(container: Container) {
+    let existe = false;
+    this.containers.forEach(element => {
+      if (element.codigo === container.codigo) {
+        existe = true;
+      }
+    });
+    if (!existe) {
+      this.containers.push(container);
+    }
+
+  }
+
+  handlerSelection(container: Container) {
     this.container = container;
+  }
+
+  onActualizarHandler(container: Container) {
+    this.containers.forEach(element => {
+      if (element.codigo === container.codigo) {
+        element.marca = container.marca;
+        element.capacidad = container.capacidad;
+      }
+    });
+    this.container = { codigo: '', marca: '', capacidad: '' };
+  }
+
+  onBorrarHandler() {
+    this.containers = this.containers.filter(element => element.codigo !== this.container.codigo);
+    this.container = { codigo: '', marca: '', capacidad: '' };
   }
 
 }

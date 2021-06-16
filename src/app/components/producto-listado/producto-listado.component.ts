@@ -1,6 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Producto } from 'src/app/models/producto';
 import { FirestoreService } from 'src/app/services/firestore.service';
+import { ProductosService } from 'src/app/services/productos.service';
+import { ProductoAltaComponent } from '../producto-alta/producto-alta.component';
 
 @Component({
   selector: 'app-producto-listado',
@@ -10,18 +12,24 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 export class ProductoListadoComponent implements OnInit {
 
   @Output() onDetalleClick = new EventEmitter<Producto>();
-  productos: Producto[];
+  @Input() productos: Producto[];
+  subscription: any;
 
-  constructor(private firestoreService: FirestoreService) { }
+  constructor(private productosService: ProductosService) { }
 
   ngOnInit(): void {
-    this.firestoreService.getProductos().valueChanges().subscribe(response => {
-      this.productos = response;
-    });
+    this.productos = this.productosService.getProductos();
+    this.subscription = this.productosService.onAltaProducto.subscribe(()=>{
+      this.productos = this.productosService.getProductos();
+    })
   }
 
   verDetalle(producto: Producto) {
     this.onDetalleClick.emit(producto);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Container } from 'src/app/models/container';
+import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
   selector: 'app-container-update',
@@ -9,6 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ContainerUpdateComponent implements OnInit {
 
   @Input() container;
+  @Output() onActualizar = new EventEmitter<Container>();
 
   codigo = new FormControl('', Validators.required);
   marca = new FormControl('', Validators.required);
@@ -23,14 +26,21 @@ export class ContainerUpdateComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.containerFormGroup.patchValue({
-      codigo: this.container.codigo,
-      marca: this.container.marca,
-      capacidad: this.container.capacidad
-    })
+    
+  }
+
+  ngOnChanges(){
+    if(this.container){
+      this.containerFormGroup.patchValue({
+        codigo: this.container.codigo,
+        marca: this.container.marca,
+        capacidad: this.container.capacidad
+      })
+    }
   }
 
   actualizar(){
-    
+    this.onActualizar.emit(this.containerFormGroup.value);
+    this.containerFormGroup.reset();
   }
 }

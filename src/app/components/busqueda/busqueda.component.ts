@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Pelicula } from 'src/app/models/pelicula';
 import { Producto } from 'src/app/models/producto';
 import { AuthService } from 'src/app/services/auth.service';
+import { ProductoAltaComponent } from '../producto-alta/producto-alta.component';
 
 @Component({
   selector: 'app-busqueda',
@@ -13,7 +13,7 @@ export class BusquedaComponent implements OnInit {
   producto: Producto;
   user;
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, private altaProducto: ProductoAltaComponent) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -22,4 +22,5 @@ export class BusquedaComponent implements OnInit {
   handleOnDetalleClick(producto: Producto) {
     this.producto = producto;
   }
+
 }

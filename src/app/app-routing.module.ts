@@ -1,13 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
-import { BusquedaComponent } from './components/busqueda/busqueda.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { PeliculaAltaComponent } from './components/pelicula-alta/pelicula-alta.component';
-import { PeliculaListadoComponent } from './components/pelicula-listado/pelicula-listado.component';
 import { ProductoAltaComponent } from './components/producto-alta/producto-alta.component';
 import { ProductoListadoComponent } from './components/producto-listado/producto-listado.component';
-import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [

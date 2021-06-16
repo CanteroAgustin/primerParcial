@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Container } from 'src/app/models/container';
 import { FirestoreService } from 'src/app/services/firestore.service';
@@ -15,6 +15,7 @@ export class ContainerAltaComponent implements OnInit {
   codigo = new FormControl('', Validators.required);
   marca = new FormControl('', Validators.required);
   capacidad = new FormControl('', Validators.required);
+  @Output() onAltaContainer = new EventEmitter<Container>();
 
   containerFormGroup = new FormGroup({
     codigo: this.codigo,
@@ -22,7 +23,7 @@ export class ContainerAltaComponent implements OnInit {
     capacidad: this.capacidad
   });
 
-  constructor(private firestoreService: FirestoreService) { }
+  constructor() { }
 
   ngOnInit(): void {
 
@@ -30,27 +31,9 @@ export class ContainerAltaComponent implements OnInit {
   }
 
   darDeAlta() {
-    let existe;
-    this.firestoreService.getContainer(this.codigo.value).then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        this.container = doc.data();
-        existe = true;
-        console.log('Ya existe el container');
-      });
-      if(!existe){
-        this.container = this.containerFormGroup.value;
-        this.firestoreService.altaContainer(this.container).then(
-          doc => {
-            this.container.uid = doc.id;
-            this.firestoreService.updateContainer(this.container.uid, this.container);
-          }
-        );
-      }
-      this.containerFormGroup.reset();
-    })
-    
-    
-
+    this.container = this.containerFormGroup.value;
+    this.onAltaContainer.emit(this.container);
+    this.containerFormGroup.reset();
   }
 
 }

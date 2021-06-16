@@ -1,28 +1,17 @@
 <div class="container pt-5">
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
         <div class="col">
-            <app-container-alta></app-container-alta>
+            <app-container-alta (onAltaContainer)='onAltaContainerHandler($event)'></app-container-alta>
             
         </div>
         <div class="col">
-            <app-container-update></app-container-update>
+            <app-container-update (onActualizar)='onActualizarHandler($event)' [container]='container'></app-container-update>
         </div>
         <div class="col">
-            <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                <div class="card-body">
-                    <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
-                    <ul class="list-unstyled mt-3 mb-4">
-                        <li>30 users included</li>
-                        <li>15 GB of storage</li>
-                        <li>Phone and email support</li>
-                        <li>Help center access</li>
-                    </ul>
-                    <button type="button" class="w-100 btn btn-lg btn-danger">Borrar</button>
-                </div>
-            </div>
+            <app-container-delete (onBorrar)='onBorrarHandler()' [container]='container'></app-container-delete>
         </div>
     </div>
 
     <h2 class="display-6 text-center mb-4">Lista de containers</h2>
-    <app-container-list [containers]='containers'></app-container-list>
+    <app-container-list [containers]='containers' (onContainerSelected)='handlerSelection($event)'></app-container-list>
 </div>

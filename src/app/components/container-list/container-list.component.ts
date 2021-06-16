@@ -1,5 +1,5 @@
 import { Container } from '@angular/compiler/src/i18n/i18n_ast';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-container-list',
@@ -9,10 +9,16 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ContainerListComponent implements OnInit {
 
   @Input() containers: Container[];
+  @Output() onContainerSelected = new EventEmitter<Container>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  seleccionarContainer(container) {
+    this.onContainerSelected.emit(container);
+    //this.container = container;
+  }
+  
 }
