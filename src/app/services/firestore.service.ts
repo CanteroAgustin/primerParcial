@@ -9,13 +9,19 @@ export class FirestoreService {
 
   collection: AngularFirestoreCollection<any> | undefined;
   containersPath = '/containers';
+  productosPath = '/productos';
 
   constructor(private firestore: AngularFirestore) {
 
   }
 
-  saveResutGame(datos: any, collectionPath: string) {
-    this.collection = this.firestore.collection(collectionPath);
+  saveProductos(datos: any) {
+    this.collection = this.firestore.collection(this.productosPath);
+    return this.collection.add({ ...datos });
+  }
+
+  saveContainer(datos: any) {
+    this.collection = this.firestore.collection(this.containersPath);
     return this.collection.add({ ...datos });
   }
 
@@ -39,14 +45,34 @@ export class FirestoreService {
     return this.collection;
   }
 
-  updateContainer(id: any, datos: any): Promise<void> {
-    this.collection = this.firestore.collection(this.containersPath);
-    return this.collection.doc(id).update(datos);
+  actualizarContainer(datos: any) {
+    const usersRef = this.firestore.collection(this.containersPath).ref;
+    var query = usersRef.where("codigo", "==", datos.codigo);
+    const containerRef = query.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.collection.doc(doc.id).update(datos);
+      });
+    });
   }
 
-  getContainer(codigo) {
+  borrarContainer(datos){
     const usersRef = this.firestore.collection(this.containersPath).ref;
-    var query = usersRef.where("codigo", "==", codigo);
-    return query.get();
+    var query = usersRef.where("codigo", "==", datos.codigo);
+    const containerRef = query.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.collection.doc(doc.id).delete();
+      });
+    });
   }
+
+  // updateContainer(id: any, datos: any): Promise<void> {
+  //   this.collection = this.firestore.collection(this.containersPath);
+  //   return this.collection.doc(id).update(datos);
+  // }
+
+  // getContainer(codigo) {
+  //   const usersRef = this.firestore.collection(this.containersPath).ref;
+  //   var query = usersRef.where("codigo", "==", codigo);
+  //   return query.get();
+  // }
 }

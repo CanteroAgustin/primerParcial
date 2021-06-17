@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from 'src/app/models/producto';
 import { AuthService } from 'src/app/services/auth.service';
-import { ProductoAltaComponent } from '../producto-alta/producto-alta.component';
 
 @Component({
   selector: 'app-busqueda',
@@ -13,7 +12,7 @@ export class BusquedaComponent implements OnInit {
   producto: Producto;
   user;
 
-  constructor(public authService: AuthService, private altaProducto: ProductoAltaComponent) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user'));

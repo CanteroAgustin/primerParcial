@@ -18,8 +18,10 @@ export class ProductoListadoComponent implements OnInit {
   constructor(private productosService: ProductosService) { }
 
   ngOnInit(): void {
-    this.productos = this.productosService.getProductos();
-    this.subscription = this.productosService.onAltaProducto.subscribe(()=>{
+    this.productosService.getFromBase().subscribe(response => {
+      this.productos = response;
+    });
+    this.subscription = this.productosService.onAltaProducto.subscribe(() => {
       this.productos = this.productosService.getProductos();
     })
   }

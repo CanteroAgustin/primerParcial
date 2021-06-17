@@ -18,7 +18,6 @@ export class ContainerListComponent implements OnInit {
 
   seleccionarContainer(container) {
     this.onContainerSelected.emit(container);
-    //this.container = container;
   }
   
 }

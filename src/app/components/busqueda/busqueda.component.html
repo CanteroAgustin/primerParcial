@@ -8,15 +8,6 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-        <!-- <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li> -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">Acciones</a>
@@ -27,17 +18,13 @@
           </div>
         </li>
       </ul>
-      <!-- <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form> -->
     </div>
   </nav>
 
   <div class="p-5 mb-4 bg-light rounded-3">
     <div class="container-fluid py-5">
       <h1 class="display-3">Listado de Productos</h1>
-      <app-producto-listado [productos]='productos' (onDetalleClick)="handleOnDetalleClick($event)"></app-producto-listado>
+      <app-producto-listado (onDetalleClick)="handleOnDetalleClick($event)"></app-producto-listado>
     </div>
   </div>
 
