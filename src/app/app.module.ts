@@ -33,6 +33,8 @@ import { ContainerAbmComponent } from './components/container-abm/container-abm.
 import { ContainerAltaComponent } from './components/container-alta/container-alta.component';
 import { ContainerUpdateComponent } from './components/container-update/container-update.component';
 import { ContainerDeleteComponent } from './components/container-delete/container-delete.component';
+import { CargarContainerComponent } from './components/cargar-container/cargar-container.component';
+import { CargarProductosEnContainerComponent } from './components/cargar-productos-en-container/cargar-productos-en-container.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { ContainerDeleteComponent } from './components/container-delete/containe
     ContainerAbmComponent,
     ContainerAltaComponent,
     ContainerUpdateComponent,
-    ContainerDeleteComponent
+    ContainerDeleteComponent,
+    CargarContainerComponent,
+    CargarProductosEnContainerComponent
   ],
   imports: [
     BrowserModule,

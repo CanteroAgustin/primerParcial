@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'email-verification', loadChildren: () => import('./components/verify-email/verify-email.module').then(m => m.VerifyEmailModule) },
   { path: 'busqueda', loadChildren: () => import('./components/busqueda/busqueda.module').then(m => m.BusquedaModule), canActivate: [AuthGuard] },
   { path: 'container', loadChildren: () => import('./components/container-abm/container-abm.module').then(m => m.ContainerAbmModule), canActivate: [AuthGuard] },
+  { path: 'cargar-container', loadChildren: () => import('./components/cargar-container/cargar-container.module').then(m => m.CargarContainerModule), canActivate: [AuthGuard] },
   {
     path: 'producto', children: [
       { path: 'alta', component: ProductoAltaComponent },

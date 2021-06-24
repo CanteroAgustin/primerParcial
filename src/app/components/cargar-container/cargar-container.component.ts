@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Container } from 'src/app/models/container';
+import { Producto } from 'src/app/models/producto';
 import { ContenedoresService } from 'src/app/services/contenedores.service';
 
 @Component({
-  selector: 'app-container-abm',
-  templateUrl: './container-abm.component.html',
-  styleUrls: ['./container-abm.component.scss']
+  selector: 'app-cargar-container',
+  templateUrl: './cargar-container.component.html',
+  styleUrls: ['./cargar-container.component.scss']
 })
-export class ContainerAbmComponent implements OnInit {
+export class CargarContainerComponent implements OnInit {
 
   containers: Container[] = [];
   container: Container;
+  producto: Producto;
 
   constructor(private containersService: ContenedoresService) { }
 
@@ -20,22 +22,12 @@ export class ContainerAbmComponent implements OnInit {
     });
   }
 
-  onAltaContainerHandler(container: Container) {
-    let existe = false;
-    this.containers.forEach(element => {
-      if (element.codigo === container.codigo) {
-        existe = true;
-      }
-    });
-    if (!existe) {
-      this.containers.push(container);
-      this.containersService.grabar(container);
-    }
-
-  }
-
   handlerSelection(container: Container) {
     this.container = container;
+  }
+
+  handleOnDetalleClick(producto: Producto) {
+    this.producto = producto;
   }
 
   onActualizarHandler(container: Container) {
@@ -43,16 +35,10 @@ export class ContainerAbmComponent implements OnInit {
       if (element.codigo === container.codigo) {
         element.marca = container.marca;
         element.capacidad = container.capacidad;
+        element.stock = this.container.stock + container.stock;
       }
     });
-    this.container = { codigo: '', marca: '', capacidad: '', uid: '', productos: [], stock: 0  };
+    this.container = { codigo: '', marca: '', capacidad: '', uid: '', productos: [], stock: 0 };
     this.containersService.actualizarContainer(container);
   }
-
-  onBorrarHandler() {
-    this.containers = this.containers.filter(element => element.codigo !== this.container.codigo);
-    this.containersService.borrarContainer(this.container);
-    this.container = { codigo: '', marca: '', capacidad: '', uid: '', productos: [], stock: 0 };
-  }
-
 }

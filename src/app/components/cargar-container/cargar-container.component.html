@@ -1,0 +1,23 @@
+<div class="container py-4">
+    <header class="pb-3 mb-4 border-bottom">
+        <span class="fs-4">Cargar container</span>
+    </header>
+    <div class="row align-items-md-stretch">
+        <div class="col-md-6">
+            <app-cargar-productos-en-container (onActualizar)='onActualizarHandler($event)' [container]='container'
+                [producto]='producto'>
+            </app-cargar-productos-en-container>
+        </div>
+        <div class="col-md-6">
+            <h6>Listado de Productos</h6>
+            <app-producto-listado (onDetalleClick)="handleOnDetalleClick($event)"></app-producto-listado>
+        </div>
+    </div>
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h2 class="display-6 text-center mb-4">Lista de containers</h2>
+            <app-container-list [containers]='containers' (onContainerSelected)='handlerSelection($event)'>
+            </app-container-list>
+        </div>
+    </div>
+</div>

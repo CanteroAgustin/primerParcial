@@ -13,6 +13,7 @@
             aria-haspopup="true" aria-expanded="false">Acciones</a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
             <a class="dropdown-item" routerLink='/producto/alta'>Dar de alta un producto</a>
+            <a class="dropdown-item" routerLink='/cargar-container'>Cargar contenedor</a>
             <a *ngIf='user.rol === "admin"' class="dropdown-item" routerLink='/container'>ABM containers</a>
             <a class="dropdown-item" (click)="authService.SignOut()">Cerrar sesion</a>
           </div>
